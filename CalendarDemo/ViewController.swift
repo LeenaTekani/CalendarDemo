@@ -87,10 +87,14 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegateFl
         {
             print("scrollLeft:\(currentIndex)")
             let aDate = self.getCurrentMontDate(-1, date: self.arrMonth[currentIndex])
+            let aDate2 = self.getCurrentMontDate(-2, date: self.arrMonth[currentIndex])
+
             if !self.checkIfDateExists(aDate) {
                 arrMonth.insert(aDate, at: 0)
+                arrMonth.insert(aDate2, at: 0)
+
                 self.clnView.reloadData()
-                let aNextIndPath = IndexPath(item: 1, section: 0)
+                let aNextIndPath = IndexPath(item: 2, section: 0)
                 self.clnView.scrollToItem(at:aNextIndPath , at: .left, animated: false)
             }
             
@@ -102,9 +106,13 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegateFl
         {
             print("scrollright:\(currentIndex)")
             let aDate = self.getCurrentMontDate(1, date: self.arrMonth[currentIndex])
+            let aDate2 = self.getCurrentMontDate(2, date: self.arrMonth[currentIndex])
+
             if !self.checkIfDateExists(aDate) {
                 arrMonth.append(aDate)
-               
+            }
+            if !self.checkIfDateExists(aDate2) {
+                arrMonth.append(aDate2)
             }
             self.clnView.reloadData()
             self.setMonthName(self.arrMonth[currentIndex])
